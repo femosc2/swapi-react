@@ -39,15 +39,15 @@ class SearchEngine extends Component {
     search() {
         console.log("hej")
         axios.all([this.searchForPeople(), this.searchForVehicles(), this.searchForSpecies(), this.searchForPlanets(),
-        this.searchForFilms(), this.searchForStarships()]).then(axios.spread((people, vehicles, species, starships, films, planets ) => {
+        this.searchForFilms(), this.searchForStarships()]).then(axios.spread((people, vehicles, species, planets, films, starships ) => {
             this.setState({
                 searchResults: [{
-                    searchResultPeople: people,
-                    searchResultFilms: films,
-                    searchResultStarships: starships,
-                    searchResultSpecies: species,
-                    searchResultVehicles: vehicles,
-                    searchResultPlanets: planets,
+                    people,
+                    films,
+                    starships,
+                    species,
+                    vehicles,
+                    planets,
                 }]
             })
         }))
@@ -58,23 +58,6 @@ class SearchEngine extends Component {
         })
     }
     render() {
-        const search = () => {
-            console.log("hej")
-            axios.all([this.searchForPeople(), this.searchForVehicles(), this.searchForSpecies(), this.searchForPlanets(),
-            this.searchForFilms(), this.searchForStarships()]).then(axios.spread((people, vehicles, species, starships, films, planets ) => {
-                this.setState({
-                    searchResults: [{
-                        searchResultPeople: people,
-                        searchResultFilms: films,
-                        searchResultStarships: starships,
-                        searchResultSpecies: species,
-                        searchResultVehicles: vehicles,
-                        searchResultPlanets: planets,
-                    }]
-                })
-                console.log(this.state.searchResults)
-            }))
-            }
         return (
             <section>
                 <p>SearchEngine</p>
@@ -82,7 +65,7 @@ class SearchEngine extends Component {
                 {this.state.searchResults != null &&
                     <SearchEngineOutputList searchResults={this.state.searchResults} />
                 }
-                <button onClick={search}>Search</button>
+                <button onClick={this.search}>Search</button>
             </section>
             
         )
