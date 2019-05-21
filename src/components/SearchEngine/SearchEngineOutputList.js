@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
+import SearchEngineOutputItem from './SearchEngineOutputItem';
 
 
 class SearchEngineOutputList extends Component {
     constructor(props) {
         super(props)
-        console.log(props.searchResults[0].planets.data.results)
+        console.log(props)
     }
     componentDidMount() {
         console.log("den här mountade")
     }
     render() {
         return (
-            this.props.searchResults[0].people.data.results.map(people => {
+            this.props.results.map(results => {
                 return (
-                    <p> {people.name}</p>
+                    <SearchEngineOutputItem key={results.url} results={results} />
                 ) 
             })
             // <p> Hej </p>

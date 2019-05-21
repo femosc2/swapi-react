@@ -6,7 +6,7 @@ class SearchEngineInput extends Component {
     constructor() {
         super()
         this.state = {
-            value: "Anakin Skywalker"
+            value: "Luke"
         }
 
         this.handleChange = this.handleChange.bind(this)

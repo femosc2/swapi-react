@@ -9,11 +9,12 @@ class SearchEngine extends Component {
     constructor() {
         super()
         this.state = {
-            searchValue: "",
+            searchValue: "Luke",
             searchResults: null,
 
         }
         this.search = this.search.bind(this)
+        this.getSearchValue = this.getSearchValue.bind(this)
     }
 
     searchForPeople() {
@@ -40,15 +41,10 @@ class SearchEngine extends Component {
         console.log("hej")
         axios.all([this.searchForPeople(), this.searchForVehicles(), this.searchForSpecies(), this.searchForPlanets(),
         this.searchForFilms(), this.searchForStarships()]).then(axios.spread((people, vehicles, species, planets, films, starships ) => {
+            let results = [...people.data.results, ...films.data.results, ...planets.data.results,
+                ...species.data.results, ...starships.data.results, ...vehicles.data.results]
             this.setState({
-                searchResults: [{
-                    people,
-                    films,
-                    starships,
-                    species,
-                    vehicles,
-                    planets,
-                }]
+                results
             })
         }))
     }
@@ -62,10 +58,12 @@ class SearchEngine extends Component {
             <section>
                 <p>SearchEngine</p>
                 <SearchEngineInput onInputChange={this.getSearchValue} />
-                {this.state.searchResults != null &&
-                    <SearchEngineOutputList searchResults={this.state.searchResults} />
-                }
                 <button onClick={this.search}>Search</button>
+                {this.state.results != null &&
+                    <ul>
+                        <SearchEngineOutputList results={this.state.results} />
+                    </ul>
+                }
             </section>
             
         )
