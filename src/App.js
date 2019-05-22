@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SearchEngine from './components/SearchEngine/SearchEngine';
-
 class App extends Component {
   render() {
     return (

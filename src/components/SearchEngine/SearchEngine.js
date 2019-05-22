@@ -5,6 +5,54 @@ import SearchEngineInput from './SearchEngineInput';
 import SearchEngineOutputList from './SearchEngineOutputList';
 
 
+
+const StyledUl = styled.ul`
+margin: 0 auto;
+width: 50%;
+padding: 0;
+@media only screen and (max-width: 768px) {
+    width: 100%;
+}
+
+`
+
+const StyledButton = styled.button`
+border: none;
+background-color: rgba(255, 255, 255, 0.5);
+font-size: 35px;
+border-radius: 35px;
+text-align: center;
+-webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.25);
+-moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.25);
+box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.25);
+width: 20%;
+margin: 0 auto;
+margin-top: 25px;
+text-align: center;
+transition: 1s;
+font-family: 'Roboto Condensed', sans-serif;
+@media only screen and (max-width: 768px) {
+    width: 75%;
+}
+
+&:hover {
+    background: rgba(255,126,119,1);
+    filter: hue-rotate(180deg);
+    transition: 1s;
+    cursor: pointer;
+}
+&:active {
+    background: #fff;
+    transition 0.3s;
+    box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.0);
+}
+`
+
+const StyledSection = styled.section`
+width: 100%;
+margin: 0 auto;
+text-align: center;
+`
 class SearchEngine extends Component {
     constructor() {
         super()
@@ -55,16 +103,16 @@ class SearchEngine extends Component {
     }
     render() {
         return (
-            <section>
-                <p>SearchEngine</p>
+            <StyledSection>
                 <SearchEngineInput onInputChange={this.getSearchValue} />
-                <button onClick={this.search}>Search</button>
+                <br />
+                <StyledButton onClick={this.search}>Search</StyledButton>
                 {this.state.results != null &&
-                    <ul>
+                    <StyledUl>
                         <SearchEngineOutputList results={this.state.results} />
-                    </ul>
+                    </StyledUl>
                 }
-            </section>
+            </StyledSection>
             
         )
     }

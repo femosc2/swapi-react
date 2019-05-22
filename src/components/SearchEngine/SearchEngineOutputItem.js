@@ -3,34 +3,57 @@ import styled from "styled-components";
 
 
 const StyledListItem = styled.li`
--webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.5);
--moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.5);
-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.5);
+-webkit-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.25);
+-moz-box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.25);
+box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.25);
+margin: 0 auto;
 margin-top: 20px;
-width: 50%;
+width: 75%;
 list-style: none;
+text-align: center;
+background-color: rgba(255, 255, 255, 0.5);
+border-radius: 35px;
+padding: 0;
+@media screen and (max-width: 768px) {
+    width: 100%;
+    border-radius: 0%;
+}
 `
 
 const StyledH4 = styled.h4`
 max-width: 100%;
+text-align: center;
 `
 const StyledLi = styled.li`
 color: black;
+text-align: center;
+padding: 0;
+padding-top: 1px;
 `
 
 const StyledH2 = styled.h2`
 color: black;
+text-align: center;
 `
 
 const StyledUl = styled.ul`
 color: black;
 list-style: none;
+text-align: center;
+padding: 0;
+`
+const StyledA = styled.a`
+color: inherit;
+transition: 1s;
+
+&:hover {
+    cursor: pointer;
+    transition: 1s;
+    color: rgba(255,126,119,1);
+}
 `
 
 class SearchEngineOutputItem extends Component {
-    constructor(props) {
-        super(props)
-    }
     componentDidMount() {
         console.log("Listitem mounted")
     }
@@ -38,11 +61,11 @@ class SearchEngineOutputItem extends Component {
         return (
             <StyledListItem key={this.props.results.url}>
                 <StyledH2> {this.props.results.name} {this.props.results.title} </StyledH2>
-                {this.props.results.films !== undefined && <StyledH4> Appeard in: </StyledH4>}
+                {this.props.results.films !== undefined && <StyledH4> Appeared in: </StyledH4>}
                 <StyledUl>
                 {this.props.results.films !== undefined && this.props.results.films.map(film => {
                     return (
-                        <StyledLi> {film} </StyledLi>
+                        <StyledLi> <StyledA href={film}>{film}</StyledA> </StyledLi>
                     )
                 })}
                 </StyledUl>
@@ -66,12 +89,12 @@ class SearchEngineOutputItem extends Component {
                     <StyledLi> {this.props.results.average_height !== undefined && "Average Height: " + this.props.results.average_height + "cm"}</StyledLi>
                     <StyledLi> {this.props.results.average_lifespan !== undefined && "Average Lifespan: " + this.props.results.average_lifespan + " years"}</StyledLi>
                     <StyledLi> {this.props.results.language !== undefined && "Language: " + this.props.results.language}</StyledLi>
-                    <StyledLi> {this.props.results.homeworld !== undefined && "Homeworld: " + this.props.results.homeworld}</StyledLi>
+                    <StyledLi> <StyledA href={this.props.results.homeworld}>{this.props.results.homeworld !== undefined && "Homeworld: " + this.props.results.homeworld}</StyledA></StyledLi>
                     <StyledLi> {this.props.results.director !== undefined && "Director: " + this.props.results.director}</StyledLi>
                     <StyledLi> {this.props.results.producer !== undefined && "Producer: " + this.props.results.producer}</StyledLi>
                     <StyledLi> {this.props.results.release_date !== undefined && "Release Date: " + this.props.results.release_date}</StyledLi>
                     
-                </StyledUl>
+                {/* </StyledUl>
                 {this.props.results.residents !== undefined && <StyledH4> Residents </StyledH4>}
                 <StyledUl>
                     {this.props.results.residents !== undefined && this.props.results.residents.map(resident => {
@@ -126,7 +149,7 @@ class SearchEngineOutputItem extends Component {
                     return (
                         <StyledLi> {resident} </StyledLi>
                     )
-                    })}
+                    })} */}
                 </StyledUl>
             </StyledListItem>
         )

@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient( 68.8deg,  rgba(234,184,163,1) 4%, rgba(247,153,130,1) 49%, rgba(255,126,119,1) 90.4% );
+  min-height: 100vh;
 }
 
 code {
